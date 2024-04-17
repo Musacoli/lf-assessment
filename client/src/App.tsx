@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { v4 as uuidv4 } from 'uuid';
 
 import MessageBubble from './components/Message'
 import { Message, AssistantMessage, UserMessage } from "./types";
@@ -29,7 +30,7 @@ const App: React.FC = () => {
   const submitChatRequest = async (prompt: string) => {
     // create the user message
     const userMessage: UserMessage = {
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       content: prompt,
       role: 'user'
     }
@@ -44,7 +45,7 @@ const App: React.FC = () => {
       const result = await axios.post('http://localhost:3001/chat', { prompt });
 
       // transform the response into an assistant message
-      const assistantMessage: AssistantMessage = {id: crypto.randomUUID(), role: 'assistant', content: result.data.response };
+      const assistantMessage: AssistantMessage = {id: uuidv4(), role: 'assistant', content: result.data.response };
 
       // add the new assistant message to the ui
       setMessages((prevMessages) => [...prevMessages, assistantMessage]);
@@ -124,7 +125,7 @@ const App: React.FC = () => {
                 <path
                   d="M2.925 5.025L9.18333 7.70833L2.91667 6.875L2.925 5.025ZM9.175 12.2917L2.91667 14.975V13.125L9.175 12.2917ZM1.25833 2.5L1.25 8.33333L13.75 10L1.25 11.6667L1.25833 17.5L18.75 10L1.25833 2.5Z"/>
               </svg>
-              <span className='hidden origin:block font-semibold text-sm ml-2'>Generate</span>
+              Send
             </button>
           </form>
         </div>

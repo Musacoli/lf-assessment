@@ -35,4 +35,3 @@ npm-debug.log*
 
 # Jest coverage and test output files
 coverage/
-*.test.tsx

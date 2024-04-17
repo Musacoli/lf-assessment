@@ -1,6 +1,6 @@
 
 
-const PromptSuggestionButton = ({ text, onClick }: { text: string; onClick: () => void }) => {
+const PromptSuggestionBox = ({ text, onClick }: { text: string; onClick: () => void }) => {
   return (
     <button
       onClick={onClick}
@@ -11,4 +11,4 @@ const PromptSuggestionButton = ({ text, onClick }: { text: string; onClick: () =
   );
 };
 
-export default PromptSuggestionButton;
+export default PromptSuggestionBox;

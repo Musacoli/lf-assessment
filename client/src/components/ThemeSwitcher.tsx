@@ -9,11 +9,11 @@ const ToggleButton = () => {
       if (storedValue !== null) {
         return storedValue;
       }
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      if (window?.matchMedia) return window?.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     };
 
     const initialTheme = getLocalValue();
-    setTheme(initialTheme);
+    setTheme(initialTheme || 'light');
 
     if (initialTheme === 'dark') {
       document.documentElement.classList.add('dark');
